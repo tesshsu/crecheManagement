@@ -1,0 +1,13 @@
+# Node modules
+node_modules/
+
+# IDE and editor settings
+.vscode/
+.idea/
+
+# Package lock files
+package-lock.json
+yarn.lock
+
+# TypeScript cache
+*.tsbuildinfo
