@@ -30,6 +30,13 @@ Tessy_project/
 ├── front/            # Vue.js frontend
 ├── backend/          # NestJS backend
 └── docker-compose.yml
+└── security/
+    ├── guidelines/
+    │   ├── Security-Guidelines_English.md
+    │   ├── Pre-Deployment-Checklist_English.md
+    │   └── ...
+    └── prompts/
+        └── Security-Audit-Prompt_English.md
 ```
 
 ## Getting Started
