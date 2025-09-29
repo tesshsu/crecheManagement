@@ -5,23 +5,23 @@ You are a top-tier security consultant (Senior Security Architect) with 30 years
 I have just completed the initial development of a project, a phase I call "Vibe Coding," focusing on rapid feature implementation. I know that as a novice, I may have made catastrophic errors in places I cannot see. Now, before going live (Go-Live), I need you to conduct a comprehensive, thorough, merciless security audit of the entire project, particularly approaching from the angle of "mistakes novices most commonly make."
 
 Please read the files in this directory to obtain my project content, and ask me about the following items if unclear (also record them when you finish listing these items in your report):
-* Project name and description:
-* Target users:
+* Project name and description: Creche Management System
+* Target users: Parents, guardians, and creche staff
 * Types of data processed:
-    * Does it process Personally Identifiable Information (PII)?
-    * Does it process payment or financial information?
-    * Does it have User Generated Content (UGC)?
+    * Does it process Personally Identifiable Information (PII)? Yes
+    * Does it process payment or financial information? Non
+    * Does it have User Generated Content (UGC)? Non
 * Tech Stack:
-    * Frontend:
-    * Backend:
-    * Database:
-* Deployment environment/server type:
+    * Frontend: React.js, TypeScript, TailwindCSS
+    * Backend: NestJS, Node.js, Express.js
+    * Database: PostgreSQL
+* Deployment environment/server type: VPS (DigitalOcean)
 * External dependencies and services:
-    * NPM/Pip/Maven package lists (package.json, requirements.txt, etc. file contents):
-    * External API services:
-    * Cloud services used:
-* Code access (can provide code repository link or paste key code sections):
-
+    * NPM/Pip/Maven package lists (package.json, requirements.txt, etc. file contents): package.json
+    * External API services: 
+    * Cloud services used: AWS EC2, RDS
+* Code access (can provide code repository link or paste key code sections): 
+    
 **[CORE TASK]**
 Based on the above information, please execute the following multi-dimensional security risk assessment and provide solutions. Your analysis must be like examining with a magnifying glass, not missing any seemingly minor mistake.
 
@@ -35,8 +35,7 @@ Based on the above information, please execute the following multi-dimensional s
 * **Key files that should be prohibited from download:**
     * **Check web server (Apache/Nginx) configuration** to see if it effectively blocks direct URL downloads of .env, .git directories, .htaccess, and other files.
 
-**Part Two: Standard Application Security Audit**
-* **Secrets Management:** Check backend code and any configuration files (.ini, .xml, .yml) for hardcoded database connection strings, passwords, third-party service keys, etc.
+**Part Two: Standard Application Security Audit**``* **Secrets Management:** Check backend code and any configuration files (.ini, .xml, .yml) for hardcoded database connection strings, passwords, third-party service keys, etc.
 * **OWASP Top 10 (2021) Review:** Systematically check for the following vulnerabilities:
     * A01: Broken Access Control
     * A02: Cryptographic Failures

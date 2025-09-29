@@ -4,8 +4,11 @@
       <img src="@/assets/header.png" alt="Header" class="header-image">
     </div>
     <div class="creche-list-content">
-      <div v-if="user" class="user-info text-center mb-4">
+      <div v-if="user?.username" class="user-info text-center mb-4">
         <h3 class="text-primary"><strong>Bienvenue, {{ user.username }}!</strong></h3>
+      </div>
+      <div v-else class="user-info text-center mb-4 text-danger">
+        <h3><strong>Non votre compte trouvé</strong></h3>
       </div>
 
       <!-- Add New Creche button and form -->
@@ -14,12 +17,8 @@
       </b-button>
       <b-form v-if="isAddingCreche" @submit.prevent="handleAddCreche" class="mb-3">
         <b-form-group label="Creche Name" label-for="creche-name">
-          <b-form-input
-            id="creche-name"
-            v-model="newCrecheName"
-            required
-            placeholder="Enter creche name"
-          ></b-form-input>
+          <b-form-input id="creche-name" v-model="newCrecheName" required
+            placeholder="Enter creche name"></b-form-input>
         </b-form-group>
         <b-button type="submit" variant="primary">Add Creche</b-button>
       </b-form>
@@ -37,19 +36,17 @@
       <div class="creche-list">
         <h2 class="text-center mb-4"><strong>Crèches</strong></h2>
         <b-list-group>
-          <b-list-group-item v-for="creche in creches" :key="creche.id" class="d-flex justify-content-between align-items-center">
+          <b-list-group-item v-for="creche in creches" :key="creche.id"
+            class="d-flex justify-content-between align-items-center">
             {{ creche.name }}
             <div class="button-group">
               <b-button :to="'/creche/' + creche.id" variant="info" size="sm" class="action-button">View</b-button>
-              <b-button @click="handleRemoveCreche(creche.id)" variant="danger" size="sm" class="action-button">Remove</b-button>
-              <b-button @click="exportCrecheChildren(creche.id)" variant="success" size="sm" class="action-button">Export</b-button>
-              <b-badge 
-                variant="primary" 
-                pill 
-                class="id-badge"
-                tag="router-link"
-                :to="{ name: 'Creche', params: { id: creche.id }}"
-              >
+              <b-button @click="handleRemoveCreche(creche.id)" variant="danger" size="sm"
+                class="action-button">Remove</b-button>
+              <b-button @click="exportCrecheChildren(creche.id)" variant="success" size="sm"
+                class="action-button">Export</b-button>
+              <b-badge variant="primary" pill class="id-badge" tag="router-link"
+                :to="{ name: 'Creche', params: { id: creche.id } }">
                 {{ creche.id }}
               </b-badge>
             </div>
@@ -136,10 +133,10 @@ export default {
     };
 
     const exportCrecheChildren = async (crecheId) => {
-    try {
+      try {
         const response = await api.get(`/children/export.csv?childCareId=${crecheId}`, {
-        responseType: 'blob',
-        headers: { 'X-Auth': user.value.username }
+          responseType: 'blob',
+          headers: { 'X-Auth': user.value.username }
         });
 
         const blob = new Blob([response.data], { type: 'text/csv' });
@@ -148,10 +145,10 @@ export default {
         link.download = `creche_${crecheId}_children.csv`;
         link.click();
         window.URL.revokeObjectURL(link.href);
-    } catch (error) {
+      } catch (error) {
         console.error(`Error exporting children for creche ${crecheId}:`, error);
         unauthorizedMessage.value = `An error occurred while trying to export children data for creche ${crecheId}.`;
-    }
+      }
     };
 
     return {

@@ -26,7 +26,7 @@ Ensure you have the following installed on your machine:
 ## Project Structure
 
 ```
-Tessy_project/
+crecheManagement/
 ├── front/            # Vue.js frontend
 ├── backend/          # NestJS backend
 └── docker-compose.yml
